@@ -1,0 +1,6 @@
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethodTest.deps.json
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethodTest.dll
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.csprojAssemblyReference.cache
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.csproj.CoreCompileInputs.cache
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.AssemblyInfoInputs.cache
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.AssemblyInfo.cs
