@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Line.cs" />
     <Compile Include="LineTest.cs" />
+    <Compile Include="PointManipulator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
