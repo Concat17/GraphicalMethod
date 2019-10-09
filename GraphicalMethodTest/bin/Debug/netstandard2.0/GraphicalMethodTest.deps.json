@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "e6eaaaca23626c51a1ac4b438216718bf6a06d57"
+    "signature": "6163d18a4804f5297d7ae37ea58c63627fce7ec7"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,8 +9,10 @@
     ".NETStandard,Version=v2.0/": {
       "GraphicalMethodTest/1.0.0": {
         "dependencies": {
+          "GraphicalMethod": "1.0.0",
           "NETStandard.Library": "2.0.3",
-          "NUnit": "3.12.0"
+          "NUnit": "3.12.0",
+          "NUnit3TestAdapter": "3.15.1"
         },
         "runtime": {
           "GraphicalMethodTest.dll": {}
@@ -31,6 +33,12 @@
             "assemblyVersion": "3.12.0.0",
             "fileVersion": "3.12.0.0"
           }
+        }
+      },
+      "NUnit3TestAdapter/3.15.1": {},
+      "GraphicalMethod/1.0.0": {
+        "runtime": {
+          "GraphicalMethod.exe": {}
         }
       }
     }
@@ -61,6 +69,18 @@
       "sha512": "sha512-3oJTrcUcT9wmweBUwgUf0f1XIYy6RZq2ziV+RM95HMKAJGsHPN2i3MKK1dAPvDPMRLz799Llj4eyu/STB9Q7OA==",
       "path": "nunit/3.12.0",
       "hashPath": "nunit.3.12.0.nupkg.sha512"
+    },
+    "NUnit3TestAdapter/3.15.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gqy0llGjhJYq9ebFvtbmBcF/MY8z5kcTIxYs+eXwp2d4Ntha8pSPxUzryvBm7H46VbWI6FS5/XNbxwiQpe88vQ==",
+      "path": "nunit3testadapter/3.15.1",
+      "hashPath": "nunit3testadapter.3.15.1.nupkg.sha512"
+    },
+    "GraphicalMethod/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

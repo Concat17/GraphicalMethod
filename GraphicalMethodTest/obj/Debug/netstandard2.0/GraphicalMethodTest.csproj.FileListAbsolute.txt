@@ -4,3 +4,14 @@ C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\
 C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.csproj.CoreCompileInputs.cache
 C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.AssemblyInfoInputs.cache
 C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.AssemblyInfo.cs
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\NUnit3.TestAdapter.dll
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\NUnit3.TestAdapter.pdb
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\nunit.engine.dll
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\nunit.engine.api.dll
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethodTest.pdb
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethod.exe
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethod.pdb
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\bin\Debug\netstandard2.0\GraphicalMethod.exe.config
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.csproj.CopyComplete
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.dll
+C:\Users\11-CE1011UR\source\repos\GraphicalMethod\GraphicalMethodTest\obj\Debug\netstandard2.0\GraphicalMethodTest.pdb
