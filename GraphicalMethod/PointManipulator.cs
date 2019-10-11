@@ -14,36 +14,29 @@ namespace GraphicalMethod
 
         public static List<PointF> getFigurePoints(Line l1, Line l2, Line l3, Size s)
         {
-            var points = FilterPoints(l1, l2, l3);
-            //points.Insert(0, points[2]);
-            ////points.RemoveAt(3);
-            //points.Insert(0, points[3]);
-            //points.RemoveAt(4);
-            //points = points.Select(p => new PointF((float)Math.Round(p.X), (float)Math.Round(p.Y))).ToList(); 
-            //var orderedPoints = points.OrderBy(x => Math.Atan2(x.X, x.Y)).ToList();
-            var orderedPoints = SortPoints(points);
-            
-            var scaledPoints = orderedPoints.Select(p => Line.ScalePoint(p)).ToList();
-            var res = scaledPoints.Where(p => p.X >= s.Width / 2 && p.Y <= s.Height / 2).ToList();
-            return res;
+            var points = FilterPoints(l1, l2, l3); 
+            var sortedPoints = SortPoints(points); 
+            var scaledPoints = sortedPoints.Select(p => Line.ScalePoint(p)).ToList();
+            //var res = scaledPoints.Where(p => p.X >= s.Width / 2 && p.Y <= s.Height / 2).ToList();
+            return scaledPoints;
         }
 
         public static List<PointF> FindPoints(Line l1, Line l2, Line l3)
         {
             List<PointF> points = new List<PointF>();
-            points.Add(GetScaledPoint(l1, l2));
-            points.Add(GetScaledPoint(l1, l3));
-            points.Add(GetScaledPoint(l2, l3));
-            points.Add(GetScaledPoint(l1, Ax));
-            points.Add(GetScaledPoint(l2, Ax));
-            points.Add(GetScaledPoint(l3, Ax));
-            points.Add(GetScaledPoint(l1, Ay));
-            points.Add(GetScaledPoint(l2, Ay));
-            points.Add(GetScaledPoint(l3, Ay));
+            points.Add(GetIntersect(l1, l2));
+            points.Add(GetIntersect(l1, l3));
+            points.Add(GetIntersect(l2, l3));
+            points.Add(GetIntersect(l1, Ax));
+            points.Add(GetIntersect(l2, Ax));
+            points.Add(GetIntersect(l3, Ax));
+            points.Add(GetIntersect(l1, Ay));
+            points.Add(GetIntersect(l2, Ay));
+            points.Add(GetIntersect(l3, Ay));
             return points;
         }
 
-        public static PointF GetScaledPoint(Line l1, Line l2)
+        public static PointF GetIntersect(Line l1, Line l2)
         {
             var intr3 = Intersect(l1, l2); 
             return intr3;
@@ -62,58 +55,68 @@ namespace GraphicalMethod
         }
 
         public static List<PointF> FilterPoints(Line l1, Line l2, Line l3)
-        {
-            var points = FindPoints(l1, l2, l3);
+        { 
             var filteredPoints = new List<PointF>();
+            var points = FindPoints(l1, l2, l3);
             foreach(var point in points)
             {
-                if (isFirstQuarter(point) && isLand(l1, point) && isLand(l2, point) && isLand(l3, point))
+                if (isFirstQuarter(point) && isInAllAreas(l1, l2, l3, point))
                     filteredPoints.Add(point);
             }
             return filteredPoints;
         }
 
+        private static bool isFirstQuarter(PointF p)
+        {
+            return p.X >= 0 && p.Y >= 0;
+        }
+
+        private static bool isInAllAreas(Line l1, Line l2, Line l3, PointF point)
+        {
+            return isLand(l1, point) && isLand(l2, point) && isLand(l3, point);
+        }
+
         public static bool isLand(Line line, PointF point)
         {
             var rightPart = line.A * point.X + line.B * point.Y;
-            rightPart = (float)Math.Round(rightPart, 3);
+            rightPart = RidOfMantissa(rightPart);
             if (rightPart >= line.C && line.isMore || rightPart <= line.C && !line.isMore)
                 return true;
             return false;
         }
 
-        public static bool isFirstQuarter(PointF p)
+        private static float RidOfMantissa(float number)
         {
-            return p.X >= 0 && p.Y >= 0;
-        }
+            return (float)Math.Round(number, 3);
+        } 
 
         static List<PointF> SortPoints(List<PointF> points)
         {
-            var cPoints = new List<PointF>(points);
+            var PointsCopy = new List<PointF>(points);
             var sorted = new List<PointF>();
-            sorted.Add(cPoints[cPoints.Count - 1]);
-            cPoints.RemoveAt(cPoints.Count - 1);
-            while (cPoints.Count > 0)
+            sorted.Add(PointsCopy[PointsCopy.Count - 1]);
+            PointsCopy.RemoveAt(PointsCopy.Count - 1);
+            while (PointsCopy.Count > 0)
             {
-                var indClosest = FindClosest(sorted[sorted.Count - 1], cPoints);
-                sorted.Add(cPoints[indClosest]);
-                cPoints.RemoveAt(indClosest);
+                int indClosest = FindAdjacent(sorted[sorted.Count - 1], PointsCopy);
+                sorted.Add(PointsCopy[indClosest]);
+                PointsCopy.RemoveAt(indClosest);
             }
             return sorted;
         }
 
-        private static int FindClosest(PointF lastP, List<PointF> cPoints)
+        private static int FindAdjacent(PointF lastP, List<PointF> cPoints)
         {
             var ind = 0;
             for (var i = 0; i < cPoints.Count; i++)
             {
-                if (isLayInOneLine(lastP, cPoints[i], cPoints))
+                if (isAdjacent(lastP, cPoints[i], cPoints))
                     return i;
             }
             return ind;
         }
 
-        private static bool isLayInOneLine(PointF lp1, PointF lp2, List<PointF> cPoints)
+        private static bool isAdjacent(PointF lp1, PointF lp2, List<PointF> cPoints)
         {
             var checker = 0;
             foreach (var p in cPoints)
@@ -122,11 +125,11 @@ namespace GraphicalMethod
                     continue;
                 if (checker == 0)
                 {
-                    checker = isAbove(lp1, lp2, p);
+                    checker = getPointSide(lp1, lp2, p);
                 }
                 else
                 {
-                    if (checker != isAbove(lp1, lp2, p))
+                    if (checker != getPointSide(lp1, lp2, p))
                     {
                         return false;
                     }
@@ -135,13 +138,11 @@ namespace GraphicalMethod
             return true;
         }
 
-        private static int isAbove(PointF lp1, PointF lp2, PointF p)
+        private static int getPointSide(PointF lp1, PointF lp2, PointF p)
         {
             if ((p.X - lp1.X) / (lp2.X - lp1.X) - (p.Y - lp1.Y) / (lp2.Y - lp1.Y) > 0)
                 return 2;
             return 1;
-        }
-
-
+        } 
     } 
 }
