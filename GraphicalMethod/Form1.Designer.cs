@@ -48,6 +48,15 @@
             this.txb31 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRes = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txbZ2 = new System.Windows.Forms.TextBox();
+            this.txbZ1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txb11
@@ -216,11 +225,88 @@
             this.btnRes.UseVisualStyleBackColor = true;
             this.btnRes.Click += new System.EventHandler(this.BtnRes_Click);
             // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(215, 415);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 22);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "x2";
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(120, 417);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 22);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "x1";
+            // 
+            // txbZ2
+            // 
+            this.txbZ2.Location = new System.Drawing.Point(159, 412);
+            this.txbZ2.Name = "txbZ2";
+            this.txbZ2.Size = new System.Drawing.Size(50, 26);
+            this.txbZ2.TabIndex = 22;
+            // 
+            // txbZ1
+            // 
+            this.txbZ1.Location = new System.Drawing.Point(64, 412);
+            this.txbZ1.Name = "txbZ1";
+            this.txbZ1.Size = new System.Drawing.Size(50, 26);
+            this.txbZ1.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(21, 417);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 22);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Z =";
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(403, 398);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 26);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Fmin";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(460, 395);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(50, 26);
+            this.textBox1.TabIndex = 26;
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(403, 430);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 26);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Fmax";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(459, 430);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(50, 26);
+            this.textBox2.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 695);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txbZ2);
+            this.Controls.Add(this.txbZ1);
             this.Controls.Add(this.btnRes);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cmb3);
@@ -270,6 +356,15 @@
         private System.Windows.Forms.TextBox txb31;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRes;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txbZ2;
+        private System.Windows.Forms.TextBox txbZ1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

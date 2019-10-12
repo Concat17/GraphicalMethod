@@ -142,5 +142,39 @@ namespace GraphicalMethod
                 return 2;
             return 1;
         } 
+
+        public static PointF MaxZ(Line z, Line l1, Line l2, Line l3)
+        {
+            var points = FindAndFilter(l1, l2, l3);
+            float max = float.NegativeInfinity;
+            PointF maxPoint = new PointF(0, 0);
+            foreach(var point in points)
+            {
+                var m = z.A * point.X + z.B * point.Y;
+                if(m > max)
+                {
+                    max = m;
+                    maxPoint = point;
+                }
+            }
+            return maxPoint;
+        }
+
+        public static PointF MinZ(Line z, Line l1, Line l2, Line l3)
+        {
+            var points = FindAndFilter(l1, l2, l3);
+            float min = float.PositiveInfinity;
+            PointF minPoint = new PointF(0, 0);
+            foreach (var point in points)
+            {
+                var m = z.A * point.X + z.B * point.Y;
+                if (m < min)
+                {
+                    min = m;
+                    minPoint = point;
+                }
+            }
+            return minPoint;
+        }
     } 
 }
