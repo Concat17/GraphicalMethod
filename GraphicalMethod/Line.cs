@@ -40,18 +40,18 @@ namespace GraphicalMethod
          
         public List<PointF> GetLinesPoints(Size panelSize)
         { 
-            List<PointF> l = new List<PointF>(); //Ax + By + C = 0   y = -(Ax - C)/ B
+            List<PointF> linePoints = new List<PointF>(); //Ax + By + C = 0   y = -(Ax - C)/ B
             if(B != 0)
             {
                 float y;
-                for (float x = 0; x < panelSize.Width / 2; x = x + 0.01f) 
-                { 
+                for (float x = 0; x < panelSize.Width / 2; x = x + 0.01f)
+                {
                     y = -(A * x - C) / B;
                     if ((10 * (float)Math.Round(-y, 6) + panelSize.Height / 2) <= panelSize.Height / 2) //check if line in first quarter
                     {
-                        l.Add(ScalePoint(new PointF(x, y)));
-                    } 
-                }
+                        linePoints.Add(ScalePoint(new PointF(x, y)));
+                    }
+                } 
             }
             else
             {
@@ -61,20 +61,20 @@ namespace GraphicalMethod
                     x = -(B * y - C) / A;
                     if ((10 * (float)Math.Round(-x, 6) + panelSize.Height / 2) <= panelSize.Height / 2)
                     {
-                        l.Add(ScalePoint(new PointF(x, y)));
+                        linePoints.Add(ScalePoint(new PointF(x, y)));
                     }
                 }
             }
-            return l;
+            return linePoints;
         } 
-
+         
         public static Line ShiftLine(Line z, PointF p)
         {
             var c = z.A * p.X + z.B * p.Y;
             return new Line(z.A, z.B, c, false);
         }
 
-        public static float CalcZ(Line z, PointF p)
+        public static float CalcZValue(Line z, PointF p)
         {
             return z.A * p.X + z.B * p.Y;
         }

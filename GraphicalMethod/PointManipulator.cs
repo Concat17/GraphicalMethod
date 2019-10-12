@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalMethod
 {
-    class PointManipulator
+    static class PointManipulator
     {
         static Line Ax = new Line(1, 0, 0, false);
         static Line Ay = new Line(0, 1, 0, false);

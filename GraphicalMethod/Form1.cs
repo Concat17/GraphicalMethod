@@ -19,17 +19,38 @@ namespace GraphicalMethod
 {
     public partial class Form1 : Form
     {
+        Line lineZ;
+        Line line1;
+        Line line2;
+        Line line3;
+        Line lineMin;
+        Line lineMax;
+
+        PointF[] polygon;
+
+        bool isResPressed;
+
         Graphics g;
         public Form1()
         {
             InitializeComponent();
             g = panel1.CreateGraphics();
             Line.panelSize = panel1.Size;
+            isResPressed = false;
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
-            DrawAxis(g); 
+            DrawAxis(g);
+            if (isResPressed)
+            { 
+                g.FillPolygon(Brushes.Pink, polygon);
+                line1.Draw(g, Pens.Red);
+                line2.Draw(g, Pens.Green);
+                line3.Draw(g, Pens.Blue);
+                lineMax.Draw(g, Pens.Olive);
+                lineMin.Draw(g, Pens.Black);
+            }
         }
 
         private void DrawAxis(Graphics g)
@@ -40,26 +61,25 @@ namespace GraphicalMethod
 
         private void BtnRes_Click(object sender, System.EventArgs e)
         {
-            var lineZ = extractZ();
-            var line1 = extractLine(txb11, txb12, txb13, cmb1);
-            var line2 = extractLine(txb21, txb22, txb23, cmb2);
-            var line3 = extractLine(txb31, txb32, txb33, cmb3);
-            line1.Draw(g, Pens.Red);
-            line2.Draw(g, Pens.Green);
-            line3.Draw(g, Pens.Blue);
-            var points = PointManipulator.getFigurePoints(line1, line2, line3, panel1.Size);
-            
-            g.FillPolygon(Brushes.Pink, points.ToArray()); 
-            var pMax = PointManipulator.MaxZ(lineZ, line1, line2, line3);
-            var pMin = PointManipulator.MinZ(lineZ, line1, line2, line3);
-            Line lineMax = Line.ShiftLine(lineZ, pMax);
-            lineMax.Draw(g, Pens.Olive);
-            Line lineMin = Line.ShiftLine(lineZ, pMin);
-            lineMin.Draw(g, Pens.Black);
-            var vMax = Line.CalcZ(lineZ, pMax);
-            var vMin = Line.CalcZ(lineZ, pMin);
-            txbMin.Text = vMin.ToString();
-            txbMax.Text = vMax.ToString();
+            ExtractLines();
+            polygon = PointManipulator.getFigurePoints(line1, line2, line3, panel1.Size).ToArray(); 
+
+            txbMin.Text = FindSolution(PointManipulator.MinZ).ToString();
+            lineMin = InitLine(lineMin, PointManipulator.MinZ); 
+
+            txbMax.Text = FindSolution(PointManipulator.MaxZ).ToString();
+            lineMax = InitLine(lineMax, PointManipulator.MaxZ);
+
+            isResPressed = true;
+            panel1.Invalidate();
+        }
+
+        private void ExtractLines()
+        {
+            lineZ = extractZLine();
+            line1 = extractLine(txb11, txb12, txb13, cmb1);
+            line2 = extractLine(txb21, txb22, txb23, cmb2);
+            line3 = extractLine(txb31, txb32, txb33, cmb3);
         }
 
         private Line extractLine(TextBox txb1, TextBox txb2, TextBox txb3, ComboBox cmb)
@@ -67,17 +87,29 @@ namespace GraphicalMethod
             var A = int.Parse(txb1.Text);
             var B = int.Parse(txb2.Text);
             var C = int.Parse(txb3.Text);
-            var sign = cmb.Text == "≥";
+            var sign = cmb.Text == "≥"; 
             return new Line(A, B, C, sign);
         }
 
-        private Line extractZ()
+        private Line extractZLine()
         {
             var A = int.Parse(txbZ1.Text);
             var B = int.Parse(txbZ2.Text);
             var C = 0;
             var sign = false;
             return new Line(A, B, C, sign);
+        }
+
+        private float FindSolution(Func<Line, Line, Line, Line, PointF> Condition)
+        {
+            var point = Condition(lineZ, line1, line2, line3); 
+            return Line.CalcZValue(lineZ, point); 
+        }
+
+        private Line InitLine(Line line, Func<Line, Line, Line, Line, PointF> Condition)
+        {
+            var point = Condition(lineZ, line1, line2, line3);
+            return Line.ShiftLine(lineZ, point);
         }
     }
 }
