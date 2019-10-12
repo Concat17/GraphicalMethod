@@ -14,47 +14,45 @@ namespace GraphicalMethod
 
         public static List<PointF> getFigurePoints(Line l1, Line l2, Line l3, Size s)
         {
-            var points = FilterPoints(l1, l2, l3); 
+            var points = FindAndFilter(l1, l2, l3); 
             var sortedPoints = SortPoints(points); 
-            var scaledPoints = sortedPoints.Select(p => Line.ScalePoint(p)).ToList();
-            //var res = scaledPoints.Where(p => p.X >= s.Width / 2 && p.Y <= s.Height / 2).ToList();
+            var scaledPoints = sortedPoints.Select(p => Line.ScalePoint(p)).ToList(); 
             return scaledPoints;
         }
 
         public static List<PointF> FindPoints(Line l1, Line l2, Line l3)
         {
             List<PointF> points = new List<PointF>();
-            points.Add(GetIntersect(l1, l2));
-            points.Add(GetIntersect(l1, l3));
-            points.Add(GetIntersect(l2, l3));
-            points.Add(GetIntersect(l1, Ax));
-            points.Add(GetIntersect(l2, Ax));
-            points.Add(GetIntersect(l3, Ax));
-            points.Add(GetIntersect(l1, Ay));
-            points.Add(GetIntersect(l2, Ay));
-            points.Add(GetIntersect(l3, Ay));
+            List<Line> lines = new List<Line>() { l1, l2, l3, Ax, Ay };
+            while (lines.Count > 0)
+            {
+                for (var i = 1; i < lines.Count; i++)
+                {
+                    var delta = Delta(lines[0], lines[i]);
+                    if(delta != 0)
+                    {
+                        var intersection = Intersect(lines[0], lines[i], delta);
+                        points.Add(intersection);
+                    } 
+                }
+                lines.RemoveAt(0);
+            } 
             return points;
-        }
+        } 
 
-        public static PointF GetIntersect(Line l1, Line l2)
-        {
-            var intr3 = Intersect(l1, l2); 
-            return intr3;
-        }
-
-        public static PointF Intersect(Line l1, Line l2)
-        { 
-            float delta = l1.A * l2.B - l2.A * l1.B;
-
-            //if (delta == 0)
-            //    throw new ArgumentException("Lines are parallel");
-
+        public static PointF Intersect(Line l1, Line l2, float delta)
+        {  
             float x = (l2.B * l1.C - l1.B * l2.C) / delta;
             float y = (l1.A * l2.C - l2.A * l1.C) / delta;
             return new PointF(x, y);
         }
 
-        public static List<PointF> FilterPoints(Line l1, Line l2, Line l3)
+        private static float Delta(Line l1, Line l2)
+        {
+            return l1.A * l2.B - l2.A * l1.B;
+        }
+
+        public static List<PointF> FindAndFilter(Line l1, Line l2, Line l3)
         { 
             var filteredPoints = new List<PointF>();
             var points = FindPoints(l1, l2, l3);
@@ -98,9 +96,9 @@ namespace GraphicalMethod
             PointsCopy.RemoveAt(PointsCopy.Count - 1);
             while (PointsCopy.Count > 0)
             {
-                int indClosest = FindAdjacent(sorted[sorted.Count - 1], PointsCopy);
-                sorted.Add(PointsCopy[indClosest]);
-                PointsCopy.RemoveAt(indClosest);
+                int indAdjacent = FindAdjacent(sorted[sorted.Count - 1], PointsCopy);
+                sorted.Add(PointsCopy[indAdjacent]);
+                PointsCopy.RemoveAt(indAdjacent);
             }
             return sorted;
         }
@@ -118,18 +116,18 @@ namespace GraphicalMethod
 
         private static bool isAdjacent(PointF lp1, PointF lp2, List<PointF> cPoints)
         {
-            var checker = 0;
+            var side = 0;
             foreach (var p in cPoints)
             {
                 if (lp2 == p)
                     continue;
-                if (checker == 0)
+                if (side == 0)
                 {
-                    checker = getPointSide(lp1, lp2, p);
+                    side = getPointSide(lp1, lp2, p);
                 }
                 else
                 {
-                    if (checker != getPointSide(lp1, lp2, p))
+                    if (side != getPointSide(lp1, lp2, p))
                     {
                         return false;
                     }
