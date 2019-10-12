@@ -15,6 +15,7 @@ namespace GraphicalMethod
         public float C { get; set; }
         public bool isMore { get; set; }
         public static Size panelSize;
+        public static PointF AxisCenter {get; set;}
 
         public Line(float a, float b, float c, bool isMore)
         {
@@ -22,12 +23,13 @@ namespace GraphicalMethod
             B = b;
             C = c;
             this.isMore = isMore; 
+
         }
          
         public static PointF ScalePoint(PointF p)
         { 
-            var x = 8 * p.X + panelSize.Width / 2;
-            var y = 8 * -p.Y + panelSize.Height / 2;
+            var x = 30 * p.X + AxisCenter.X;
+            var y = 30 * -p.Y + AxisCenter.Y;
             return new PointF(x, y);
         } 
 
@@ -44,10 +46,10 @@ namespace GraphicalMethod
             if(B != 0)
             {
                 float y;
-                for (float x = 0; x < panelSize.Width / 2; x = x + 0.01f)
+                for (float x = 0; x < AxisCenter.X; x = x + 0.01f)
                 {
                     y = -(A * x - C) / B;
-                    if ((10 * (float)Math.Round(-y, 6) + panelSize.Height / 2) <= panelSize.Height / 2) //check if line in first quarter
+                    if ((10 * (float)Math.Round(-y, 6) + AxisCenter.X) <= AxisCenter.X) //check if line in first quarter
                     {
                         linePoints.Add(ScalePoint(new PointF(x, y)));
                     }
@@ -56,10 +58,10 @@ namespace GraphicalMethod
             else
             {
                 float x;
-                for (float y = 0; y < panelSize.Height / 2; y = y + 0.01f) 
+                for (float y = 0; y < AxisCenter.Y; y = y + 0.01f) 
                 { 
                     x = -(B * y - C) / A;
-                    if ((10 * (float)Math.Round(-x, 6) + panelSize.Height / 2) <= panelSize.Height / 2)
+                    if ((10 * (float)Math.Round(-x, 6) + AxisCenter.Y) <= AxisCenter.Y)
                     {
                         linePoints.Add(ScalePoint(new PointF(x, y)));
                     }

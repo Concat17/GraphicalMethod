@@ -14,6 +14,7 @@ using System.Collections.Generic;
  * 7 Fix Stack overflow at examples like this: x <= 4
  * 8 Add Z-func and vector n
  * 9 Implement finding max and min
+ * 10 Fix 2 1 less 1
  */
 namespace GraphicalMethod
 {
@@ -27,6 +28,7 @@ namespace GraphicalMethod
         Line lineMax;
 
         PointF[] polygon;
+         
 
         bool isResPressed;
 
@@ -36,6 +38,7 @@ namespace GraphicalMethod
             InitializeComponent();
             g = panel1.CreateGraphics();
             Line.panelSize = panel1.Size;
+            Line.AxisCenter = new PointF(panel1.Width * 0.1f, panel1.Height * 0.9f);
             isResPressed = false;
         }
 
@@ -55,8 +58,8 @@ namespace GraphicalMethod
 
         private void DrawAxis(Graphics g)
         { 
-            g.DrawLine(Pens.LightBlue, panel1.Width / 2, 0, panel1.Width / 2, panel1.Height);
-            g.DrawLine(Pens.LightBlue, 0, panel1.Height / 2, panel1.Width, panel1.Height / 2);
+            g.DrawLine(Pens.LightBlue, Line.AxisCenter.X, 0, Line.AxisCenter.X, panel1.Height);
+            g.DrawLine(Pens.LightBlue, 0, Line.AxisCenter.Y, panel1.Width, Line.AxisCenter.Y);
         }
 
         private void BtnRes_Click(object sender, System.EventArgs e)
