@@ -54,9 +54,9 @@
             this.txbZ1 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbMin = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbMax = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txb11
@@ -65,6 +65,7 @@
             this.txb11.Name = "txb11";
             this.txb11.Size = new System.Drawing.Size(50, 26);
             this.txb11.TabIndex = 0;
+            this.txb11.Text = "3";
             // 
             // txb12
             // 
@@ -72,6 +73,7 @@
             this.txb12.Name = "txb12";
             this.txb12.Size = new System.Drawing.Size(50, 26);
             this.txb12.TabIndex = 2;
+            this.txb12.Text = "2";
             // 
             // txb13
             // 
@@ -79,6 +81,7 @@
             this.txb13.Name = "txb13";
             this.txb13.Size = new System.Drawing.Size(50, 26);
             this.txb13.TabIndex = 3;
+            this.txb13.Text = "12";
             // 
             // label1
             // 
@@ -106,7 +109,7 @@
             this.cmb1.Name = "cmb1";
             this.cmb1.Size = new System.Drawing.Size(52, 28);
             this.cmb1.TabIndex = 6;
-            this.cmb1.Text = "≥";
+            this.cmb1.Text = "≤";
             // 
             // cmb2
             // 
@@ -142,6 +145,7 @@
             this.txb23.Name = "txb23";
             this.txb23.Size = new System.Drawing.Size(50, 26);
             this.txb23.TabIndex = 9;
+            this.txb23.Text = "4";
             // 
             // txb22
             // 
@@ -149,6 +153,7 @@
             this.txb22.Name = "txb22";
             this.txb22.Size = new System.Drawing.Size(50, 26);
             this.txb22.TabIndex = 8;
+            this.txb22.Text = "2";
             // 
             // txb21
             // 
@@ -156,6 +161,7 @@
             this.txb21.Name = "txb21";
             this.txb21.Size = new System.Drawing.Size(50, 26);
             this.txb21.TabIndex = 7;
+            this.txb21.Text = "1";
             // 
             // cmb3
             // 
@@ -167,7 +173,7 @@
             this.cmb3.Name = "cmb3";
             this.cmb3.Size = new System.Drawing.Size(52, 28);
             this.cmb3.TabIndex = 18;
-            this.cmb3.Text = "≥";
+            this.cmb3.Text = "≤";
             // 
             // label5
             // 
@@ -191,6 +197,7 @@
             this.txb33.Name = "txb33";
             this.txb33.Size = new System.Drawing.Size(50, 26);
             this.txb33.TabIndex = 15;
+            this.txb33.Text = "1";
             // 
             // txb32
             // 
@@ -198,6 +205,7 @@
             this.txb32.Name = "txb32";
             this.txb32.Size = new System.Drawing.Size(50, 26);
             this.txb32.TabIndex = 14;
+            this.txb32.Text = "-1";
             // 
             // txb31
             // 
@@ -205,6 +213,7 @@
             this.txb31.Name = "txb31";
             this.txb31.Size = new System.Drawing.Size(50, 26);
             this.txb31.TabIndex = 13;
+            this.txb31.Text = "2";
             // 
             // panel1
             // 
@@ -247,6 +256,7 @@
             this.txbZ2.Name = "txbZ2";
             this.txbZ2.Size = new System.Drawing.Size(50, 26);
             this.txbZ2.TabIndex = 22;
+            this.txbZ2.Text = "1";
             // 
             // txbZ1
             // 
@@ -254,6 +264,7 @@
             this.txbZ1.Name = "txbZ1";
             this.txbZ1.Size = new System.Drawing.Size(50, 26);
             this.txbZ1.TabIndex = 21;
+            this.txbZ1.Text = "5";
             // 
             // label9
             // 
@@ -271,12 +282,12 @@
             this.label10.TabIndex = 27;
             this.label10.Text = "Fmin";
             // 
-            // textBox1
+            // txbMin
             // 
-            this.textBox1.Location = new System.Drawing.Point(460, 395);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(50, 26);
-            this.textBox1.TabIndex = 26;
+            this.txbMin.Location = new System.Drawing.Point(460, 395);
+            this.txbMin.Name = "txbMin";
+            this.txbMin.Size = new System.Drawing.Size(50, 26);
+            this.txbMin.TabIndex = 26;
             // 
             // label11
             // 
@@ -286,12 +297,12 @@
             this.label11.TabIndex = 29;
             this.label11.Text = "Fmax";
             // 
-            // textBox2
+            // txbMax
             // 
-            this.textBox2.Location = new System.Drawing.Point(459, 430);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(50, 26);
-            this.textBox2.TabIndex = 28;
+            this.txbMax.Location = new System.Drawing.Point(459, 430);
+            this.txbMax.Name = "txbMax";
+            this.txbMax.Size = new System.Drawing.Size(50, 26);
+            this.txbMax.TabIndex = 28;
             // 
             // Form1
             // 
@@ -299,9 +310,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 695);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txbMax);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbMin);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
@@ -362,9 +373,9 @@
         private System.Windows.Forms.TextBox txbZ1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbMin;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbMax;
     }
 }
 
