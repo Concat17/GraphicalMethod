@@ -24,25 +24,7 @@ namespace GraphicalMethod
             this.isMore = isMore;
             //Simplify(); 
         }
-
-        //public PointF Intersect(Line l2)
-        //{
-        //    var A1 = A;
-        //    var B1 = B;
-        //    var C1 = C;
-        //    var A2 = l2.A;
-        //    var B2 = l2.B;
-        //    var C2 = l2.C;
-        //    float delta = A1 * B2 - A2 * B1;
-
-        //    if (delta == 0)
-        //        throw new ArgumentException("Lines are parallel");
-
-        //    float x = (B2 * C1 - B1 * C2) / delta;
-        //    float y = (A1 * C2 - A2 * C1) / delta;
-        //    return new PointF(x, y);
-        //}
-
+         
         public static PointF ScalePoint(PointF p)
         { 
             var x = 10 * p.X + panelSize.Width / 2;
@@ -72,34 +54,50 @@ namespace GraphicalMethod
                 g.DrawLine(pen, line[0], line[line.Count - 1]);
         } 
 
-        public PointF GetPoint0(Size s)
-        {
-            //y = -(Ax - C)/ B
-            var x = 0;
-            var y = -(A * x - C) / B;
-            return new PointF(x, y);
-        }
+        //public PointF GetPoint0(Size s)
+        //{
+        //    //y = -(Ax - C)/ B
+        //    var x = 0;
+        //    var y = -(A * x - C) / B;
+        //    return new PointF(x, y);
+        //}
 
-        public PointF GetPoint1(Size s)
-        {
-            //x = -(By - C) / A
-            var y = 0;
-            var x = -(B * y - C) / A;
-            return new PointF(x, y);
-        }
+        //public PointF GetPoint1(Size s)
+        //{
+        //    //x = -(By - C) / A
+        //    var y = 0;
+        //    var x = -(B * y - C) / A;
+        //    return new PointF(x, y);
+        //}
 
         public List<PointF> GetLinesPoints(Size panelSize)
         {
 
             List<PointF> l = new List<PointF>(); //Ax + By + C = 0   y = -(Ax - C)/ B
-            float y;
-
-            for (float x = 0; x < panelSize.Width / 2; x = x + 0.01f) // t1 = C t2 = A t3 = B
-            { 
-                y = -(A * x - C) / B; 
-                if ((10 * (float)Math.Round(-y, 6) + panelSize.Height / 2) <= panelSize.Height / 2) //check that first quarter
+            if(B != 0)
+            {
+                float y;
+                for (float x = 0; x < panelSize.Width / 2; x = x + 0.01f) // t1 = C t2 = A t3 = B
                 {
-                    l.Add(ScalePoint(new PointF(x, y)));
+
+                    y = -(A * x - C) / B;
+                    if ((10 * (float)Math.Round(-y, 6) + panelSize.Height / 2) <= panelSize.Height / 2) //check that first quarter
+                    {
+                        l.Add(ScalePoint(new PointF(x, y)));
+                    }
+                }
+            }
+            else
+            {
+                float x;
+                for (float y = 0; y < panelSize.Height / 2; y = y + 0.01f) // t1 = C t2 = A t3 = B
+                {
+
+                    x = -(B * y - C) / A;
+                    if ((10 * (float)Math.Round(-x, 6) + panelSize.Height / 2) <= panelSize.Height / 2) //check that first quarter
+                    {
+                        l.Add(ScalePoint(new PointF(x, y)));
+                    }
                 }
             }
             return l;

@@ -46,8 +46,8 @@ namespace GraphicalMethod
         { 
             float delta = l1.A * l2.B - l2.A * l1.B;
 
-            if (delta == 0)
-                throw new ArgumentException("Lines are parallel");
+            //if (delta == 0)
+            //    throw new ArgumentException("Lines are parallel");
 
             float x = (l2.B * l1.C - l1.B * l2.C) / delta;
             float y = (l1.A * l2.C - l2.A * l1.C) / delta;
