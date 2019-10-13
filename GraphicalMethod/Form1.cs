@@ -47,13 +47,14 @@ namespace GraphicalMethod
             DrawAxis(g);
             if (isResPressed)
             { 
-                g.FillPolygon(Brushes.Pink, polygon);
+                if(polygon.Length != 0)
+                    g.FillPolygon(Brushes.Pink, polygon);
                 line1.Draw(g, Pens.Red);
                 line2.Draw(g, Pens.Green);
                 line3.Draw(g, Pens.Blue);
                 lineMax.Draw(g, Pens.Olive);
                 lineMin.Draw(g, Pens.Black);
-            }
+            } 
         }
 
         private void DrawAxis(Graphics g)
@@ -115,54 +116,4 @@ namespace GraphicalMethod
             return Line.ShiftLine(lineZ, point);
         }
     }
-}
-//Line lineZ = new Line(5, 1, 0, false);
-
-//Line line1 = new Line(3, 2, 12, false);
-//line1.Draw(g, Pens.Red);
-
-//Line line2 = new Line(1, 2, 4, true);//find points filter points
-//line2.Draw(g, Pens.Green);
-
-//Line line3 = new Line(2, -1, 1, false);
-//line3.Draw(g, Pens.Blue);
-
-//var testPoints = new List<PointF>() { new PointF(1, 2), new PointF(3, 2), new PointF(2, 1), new PointF(2, 3) };
-//var res = testPoints.OrderBy(x => Math.Atan2(x.X, x.Y)).ToList();
-//var f = 3;
-//PointManipulator.isLand(line3, new PointF(1.2f, 1.4f));
-
-//Line line1 = new Line(-1, 1, 5, false);
-//line1.Draw(g, Pens.Black);
-
-//Line line2 = new Line(1, 1, 8, false);
-//line2.Draw(g, Pens.Red);
-
-//Line line3 = new Line(3, 5, 18, true);
-//line3.Draw(g, Pens.Green);
-
-//Line line1 = new Line(1, 2, 8, false);
-//line1.Draw(g, Pens.Black);
-
-//Line line2 = new Line(-2, -3, -4, false);//find points filter points
-//line2.Draw(g, Pens.Red);
-
-//Line line3 = new Line(-2, 1, -2, false);
-//line3.Draw(g, Pens.Green);
-
-//Line line1 = new Line(2, 4, 20, false);
-//line1.Draw(g, Pens.Black);
-
-//Line line2 = new Line(3, -5, 1, false);//find points filter points
-//line2.Draw(g, Pens.Red);
-
-//Line line3 = new Line(1, 0, 4, false);
-//line3.Draw(g, Pens.Green);
-
-//Line lineZ = new Line(1, -2, 0, false);
-//Line line1 = new Line(5, 3, 30, true);
-//line1.Draw(g, Pens.Black);
-//Line line2 = new Line(1, -1, 3, false);//find points filter points
-//line2.Draw(g, Pens.Red);
-//Line line3 = new Line(-3, 5, 15, false);
-//line3.Draw(g, Pens.Green);
+} 

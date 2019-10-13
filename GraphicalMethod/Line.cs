@@ -31,7 +31,7 @@ namespace GraphicalMethod
             var x = 30 * p.X + AxisCenter.X;
             var y = 30 * -p.Y + AxisCenter.Y;
             return new PointF(x, y);
-        } 
+        }  
 
         public void Draw(Graphics g, Pen pen)
         { 
@@ -42,14 +42,14 @@ namespace GraphicalMethod
          
         public List<PointF> GetLinesPoints(Size panelSize)
         { 
-            List<PointF> linePoints = new List<PointF>(); //Ax + By + C = 0   y = -(Ax - C)/ B
+            List<PointF> linePoints = new List<PointF>();  
             if(B != 0)
             {
                 float y;
                 for (float x = 0; x < AxisCenter.X; x = x + 0.01f)
                 {
                     y = -(A * x - C) / B;
-                    if ((10 * (float)Math.Round(-y, 6) + AxisCenter.X) <= AxisCenter.X) //check if line in first quarter
+                    if ((10 * (float)Math.Round(-y, 6) + AxisCenter.X) <= AxisCenter.X)  
                     {
                         linePoints.Add(ScalePoint(new PointF(x, y)));
                     }

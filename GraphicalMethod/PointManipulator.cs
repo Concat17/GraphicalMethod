@@ -11,6 +11,7 @@ namespace GraphicalMethod
     {
         static Line Ax = new Line(1, 0, 0, false);
         static Line Ay = new Line(0, 1, 0, false);
+         
 
         public static List<PointF> getFigurePoints(Line l1, Line l2, Line l3, Size s)
         {
@@ -23,7 +24,8 @@ namespace GraphicalMethod
         public static List<PointF> FindPoints(Line l1, Line l2, Line l3)
         {
             List<PointF> points = new List<PointF>();
-            List<Line> lines = new List<Line>() { l1, l2, l3, Ax, Ay };
+            Line HighY = new Line(0, 1, 50, false);
+            List<Line> lines = new List<Line>() { l1, l2, l3, Ax, Ay, HighY};
             while (lines.Count > 0)
             {
                 for (var i = 1; i < lines.Count; i++)
@@ -90,6 +92,8 @@ namespace GraphicalMethod
 
         static List<PointF> SortPoints(List<PointF> points)
         {
+            if (points.Count == 0)
+                return points;
             var PointsCopy = new List<PointF>(points);
             var sorted = new List<PointF>();
             sorted.Add(PointsCopy[PointsCopy.Count - 1]);
